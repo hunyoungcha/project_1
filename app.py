@@ -2,8 +2,8 @@
 
 
 from flask import Flask, render_template, request, session, url_for, redirect
-import os
 from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
 
@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
-app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_USERNAME'] = 'hunyoung52472@gmail.com'
 app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
@@ -23,12 +23,13 @@ def index():
 
 
 
-@app.route('/mail/')
+@app.route('/mail/', methods=['GET', 'POST'])
 def mail():
-    msg = Message('Hello', sender='hunyoung5247@gmail.com', recipients=['chamgf5247@naver.com'])
+    address=request.values.get('emailAddress')
+    msg = Message('Hello', sender='hunyoung5247@gmail.com', recipients=[address])
     msg.body = 'Hello Flask message sent fro Flask-Mail'
-    mail.send(msg)
-    return 'Sent'
+    Mail(app).send(msg)
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

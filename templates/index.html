@@ -135,11 +135,11 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" action="/mail/">
+                        <form class="form-signup" id="contactForm" action="/mail/" method="post">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /></div>
-                                <div class="col-auto"><button class="btn btn-primary" disabled="" id="submitButton" type="submit">Notify Me!</button></div>
+                                <div class="col"><input class="form-control" name="emailAddress" id="emailAddress" type="email" placeholder="Enter email address..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /></div>
+                                <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="submit">Notify Me!</button></div>
                             </div>
                         </form>
                     </div>
