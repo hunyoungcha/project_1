@@ -6,12 +6,12 @@ import os
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-mail=Mail()
+
 
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'hunyoung5247@gmail.com'
+app.config["MAIL_PORT"] = 465
+app.config['MAIL_USERNAME'] = ''
 app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True

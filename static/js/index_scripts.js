@@ -38,6 +38,11 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     };
 
+    var notify=document.getElementById('submitButton');
+    if (document.getElementById('emailAddress') == true){
+        notify.disabled= false;
+    }
+
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
     const responsiveNavItems = [].slice.call(
