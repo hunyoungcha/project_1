@@ -1,7 +1,7 @@
 #execpt 부분 alert로 실패 알림 하고 다시 render_template('/')
 
 
-from flask import Flask, render_template, request, session, url_for, redirect
+from flask import Flask, render_template, request, session, url_for, redirect, flash
 from flask_mail import Mail, Message
 
 
@@ -23,18 +23,21 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 
-@app.route('/mail/', methods=['GET', 'POST'])
+@app.route('/check_mail/', methods=['GET', 'POST'])
 def mail():
     try:
         address=request.values.get('emailAddress')
-        address=request.values.get('emailAddress')
-        msg = Message('Hello', sender='chamgf5247@naver.com', recipients=[address])
-        msg.body = 'Hello Flask message sent fro Flask-Mail'
-        Mail(app).send(msg)
-        return redirect('/')
-    except:
-        return redirect('/#signup')
+        return redirect('/right_email/')
 
+    except:
+        return 
+
+#         address=request.values.get('emailAddress')
+#         address=request.values.get('emailAddress')
+#         msg = Message('Hello', sender='chamgf5247@naver.com', recipients=[address])
+#         msg.body = 'Hello Flask message sent fro Flask-Mail'
+#         Mail(app).send(msg)
+#         return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
