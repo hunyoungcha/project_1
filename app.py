@@ -18,7 +18,7 @@ def index():
 app.config['MAIL_SERVER'] = 'smtp.naver.com'
 app.config["MAIL_PORT"] = 465
 app.config['MAIL_USERNAME'] = 'chamgf5247'
-app.config['MAIL_PASSWORD'] = 'Navergnsdud6361@'
+app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
