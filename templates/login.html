@@ -33,11 +33,11 @@
                 <h1 class="container">Login to Thing-Un</h1>
                 <form action="/process_login/" method="POST">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="width:400px;" >
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="width:400px;" name="email" pattern='^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$'>
                         <label for="floatingInput">Email address</label>
                       </div>
                       <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="width:400px;">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="width:400px;" name="pw">
                         <label for="floatingPassword">Password</label>
                       </div>
                     <button type="submit" class="btn btn-primary" style="width:400px;">Submit</button>

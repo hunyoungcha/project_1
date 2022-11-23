@@ -1,13 +1,9 @@
-#execpt 부분 alert로 실패 알림 하고 다시 render_template('/')
-#signup, login name 값 제대로 주기
+#signup 폼 데이터 못받아 오고 계속 오류 뜸 해결 해야함
+
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 from flask_mail import Mail, Message
-
-
 app = Flask(__name__)
-
-
 
 
 
@@ -30,11 +26,22 @@ def login():
 def process_login():
     email=request.values.get('email')
     pw=request.values.get('pw')
+    
 
 @app.route('/signup/')
 def signupk():
     return render_template('signup.html')
 
+@app.route('/process_signup/', methods=['GET', 'POST'])
+def process_signup():
+    uname=request.values.get('sign-uname')
+    email=request.values.get('sign-email')
+    pw=request.values.get('sign-pw')
+    return uname ,email, pw
+
+    # data=open('database', 'a')
+    # data.write(f'{uname} {email} {pw}')
+    # return redirect('/login/')
 
 
 # @app.route('/check_mail/', methods=['GET', 'POST'])
