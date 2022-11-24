@@ -1,4 +1,7 @@
-#signup 폼 데이터 못받아 오고 계속 오류 뜸 해결 해야함
+#flask {{}} 써서 값 바꾸는 법 찾아서 특정 div 바꾸는법 알아보기
+#txt에 데이터 추가, 삭제 될거고
+#python 파일 하나 만들어서 전처리 해서 넘어오는 걸로
+
 
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
@@ -13,7 +16,7 @@ def index():
 
 app.config['MAIL_SERVER'] = 'smtp.naver.com'
 app.config["MAIL_PORT"] = 465
-app.config['MAIL_USERNAME'] = 'chamgf5247'
+app.config['MAIL_USERNAME'] = ''
 app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
@@ -34,10 +37,16 @@ def signupk():
 
 @app.route('/process_signup/', methods=['GET', 'POST'])
 def process_signup():
-    uname=request.values.get('sign-uname')
-    email=request.values.get('sign-email')
-    pw=request.values.get('sign-pw')
-    return uname ,email, pw
+    if request.method=='get':
+        return redirect('/process_signup/')
+    else:
+        suname=request.form.get('sign-uname')
+        semail=request.form.get('sign-email')
+        spw=request.form.get('sign-pw')
+
+        data=open('database.txt', 'r')
+        
+    
 
     # data=open('database', 'a')
     # data.write(f'{uname} {email} {pw}')
