@@ -1,14 +1,11 @@
 #flask {{}} 써서 값 바꾸는 법 찾아서 특정 div 바꾸는법 알아보기
-#txt에 데이터 추가, 삭제 될거고
-#python 파일 하나 만들어서 전처리 해서 넘어오는 걸로
 
 
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 from flask_mail import Mail, Message
 app = Flask(__name__)
-
-
+import datacon as dc
 
 @app.route('/')
 def index():
@@ -39,19 +36,17 @@ def signupk():
 def process_signup():
     if request.method=='get':
         return redirect('/process_signup/')
-    else:
+    elif request.method=='post':
         suname=request.form.get('sign-uname')
         semail=request.form.get('sign-email')
         spw=request.form.get('sign-pw')
-
-        data=open('database.txt', 'r')
+        dc.update_data(suname,semail,spw)
+        except:                                      #중복된 mail 없을때
+            return render_template('/login/')       
+        try:                                        #mail이 중복될때
+            return render_template('fail_signup.html')  #signup 화면과 똑같은데 mail칸에 중복이라고 표시해둔 화면 
         
     
-
-    # data=open('database', 'a')
-    # data.write(f'{uname} {email} {pw}')
-    # return redirect('/login/')
-
 
 # @app.route('/check_mail/', methods=['GET', 'POST'])
 # def mail():
