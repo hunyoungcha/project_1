@@ -28,32 +28,32 @@ def process_login():
     pw=request.values.get('pw')
     
 
-@app.route('/signup/')
-def signupk():
-    return render_template('signup.html')
-
-@app.route('/process_signup/', methods=['GET', 'POST'])
-def process_signup():
-    if request.method=='get':
-        return redirect('/process_signup/')
-    elif request.method=='post':
+@app.route('/signup/' ,methods=['GET', 'POST'])
+def signup():
+    if request.method=='GET':
+        return render_template('signup.html')
+    elif request.method=='POST':
         suname=request.form.get('sign-uname')
         semail=request.form.get('sign-email')
         spw=request.form.get('sign-pw')
-        dc.update_data(suname,semail,spw)
-        except:                                      #중복된 mail 없을때
-            return render_template('/login/')       
-        try:                                        #mail이 중복될때
-            return render_template('fail_signup.html')  #signup 화면과 똑같은데 mail칸에 중복이라고 표시해둔 화면 
-        
-    
-
+        try :
+            if suname!='' and semail!='' and spw!='':
+                if dc.check_uname(suname)==False and dc.check_mail(semail)==False:
+                    dc.add_data(suname,semail,spw)
+                    return redirect('/login/')
+                else:
+                    return render_template('signup.html', hidden='off' ,text='Duplicate name or email. Please enter a different value.')
+            else:
+                return render_template('signup.html', hidden='off', text="Do not allow spaces. Please enter a value.")     
+        except:
+            return render_template('signup.html', hidden='off', text="Signup failed Please try again!")
+        #     return redirect('/login/')
+        #     return render_template('fail_singup.html')    
 # @app.route('/check_mail/', methods=['GET', 'POST'])
 # def mail():
 #     try:
 #         address=request.values.get('emailAddress')
 #         return redirect('/right_email/')
-
 #     except:
 #         return 
 

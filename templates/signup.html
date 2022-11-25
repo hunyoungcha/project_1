@@ -30,7 +30,7 @@
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <h1 class="container">Sign-Up to Thing-Un</h1>
-                <form action="/process_signup/" method="POST">
+                <form action="/signup/" method="POST">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput"  placeholder="name@example.com" style="width:400px;" name="sign-uname" pattern='^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'>
                         <label for="floatingInput">User Name</label>
@@ -44,7 +44,10 @@
                         <label for="floatingPassword">Password</label>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width:400px;">Sign-Up</button>
-                  </form>
+                    {% if hidden=='off' %}
+                    <p class="text-danger ">{{text}}</p>
+                    {% endif %}
+                </form>
             </div>
         </div>
     </header>
