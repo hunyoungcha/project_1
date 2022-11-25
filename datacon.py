@@ -59,4 +59,11 @@ def check_pw(pw):
             return True
     return False
 
+def get_uname(mail):
+    data=pret()
+    for i in range(len(data)):
+        if mail==data[i][1]:
+            return data[i][0]
+    return False
+
 #################################################################
