@@ -20,6 +20,10 @@ def index():
 def home(uname):
     return render_template('home.html', name=uname)
 
+@app.route('/delete/<uname>')
+def delete(uname):
+    return 1
+
 
 
 @app.route('/login/', methods=['GET', 'POST'])
