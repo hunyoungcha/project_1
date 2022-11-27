@@ -38,6 +38,9 @@ def add_data(uname,email,pw):   #데이터 추가 (회원가입 기능, txt파�
     data.close()
 
 
+def add_time(uname,time):
+    
+
 
 
 #################################################################
@@ -68,5 +71,6 @@ def get_uname(mail):
         if mail==data[i][1]:
             return data[i][0]
     return False
+
 
 #################################################################
