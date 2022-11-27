@@ -19,12 +19,10 @@ def index():
 @app.route('/home/<uname>/',methods=['GET','POST']) #get방식은 안됨, 테스트할때만 허용해놓고 나중엔 삭제하기
 def home(uname):
     return render_template('home.html', name=uname)
-
+    
 @app.route('/delete/<uname>')
 def delete(uname):
-    return 1
-
-
+    return uname
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
