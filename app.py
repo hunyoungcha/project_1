@@ -16,14 +16,14 @@ app.secret_key="My_Key"
 def index():
     return render_template('index.html')
 
-@app.route('/home/<uname>/',methods=['GET','POST']) #get방식은 안됨, 테스트할때만 허용해놓고 나중엔 삭제하기
+@app.route('/home/<uname>/',methods=['GET','POST'])
 def home(uname):
     if request.method=='GET':
         return render_template('home.html', name=uname)
     elif request.method=='POST':
         time=request.form.get('time')
         return time
-    #time 설정 안된 계정은 다 00:00으로
+    #time 설정 안된 계정은 다 08:00으로
     #dc.add_time()으로 계정 정보 뒤에 time 추가 하기
 
 @app.route('/delete/<uname>')

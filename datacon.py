@@ -1,17 +1,26 @@
-def pret():   #데이터 전처리 (txt파일에 있는 데이터 읽어와서 2중 배열로 만듬)
+class pret:
+       #데이터 전처리 (txt파일에 있는 데이터 읽어와서 2중 배열로 만듬)
     data=open('database.txt','r')
     dline=data.readlines()
     dline=list(map(lambda s : s.strip(), dline))
     dline=list(filter(None, dline))
-    database=[]
-    for i in range(len(dline)):
-        database.append(dline[i].split())
     data.close()
-    return database
 
+    database=[]
+    timebase=[]
+    for i in range(len(dline)):
+        database.append(dline[i].split()[:3])
+        timebase.append(dline[i].split()[-1])
+    
+
+    def update_time(uname,time):
+        for i in range(len(pret.dline)):
+            if pret.database[i][0]==uname:
+                
+        return print('not haveuser')
 
 def delete_data(uname):    #데이터 삭제 (리스트에서 조건 맞는거 삭제 시킨후 리스트 그대로 다시 txt 파일에 재생성)
-    data=pret()
+    data=pret.database
     is_name=0
     for i in range(len(data)):
         if uname==data[i][0]:
@@ -38,35 +47,31 @@ def add_data(uname,email,pw):   #데이터 추가 (회원가입 기능, txt파�
     data.close()
 
 
-def add_time(uname,time):
-    
-
-
 
 #################################################################
 def check_uname(name):
-    data=pret()
+    data=pret.database
     for i in range(len(data)):
         if name==data[i][0]:
             return True
     return False
 
 def check_mail(mail):
-    data=pret()
+    data=pret.database
     for i in range(len(data)):
         if mail==data[i][1]:
             return True
     return False
 
 def check_pw(pw):
-    data=pret()
+    data=pret.database
     for i in range(len(data)):
         if pw==data[i][2]:
             return True
     return False
 
 def get_uname(mail):
-    data=pret()
+    data=pret.database
     for i in range(len(data)):
         if mail==data[i][1]:
             return data[i][0]
@@ -74,3 +79,5 @@ def get_uname(mail):
 
 
 #################################################################
+
+print(pret.get_time('cha','08:01'))

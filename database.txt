@@ -1,5 +1,5 @@
-cha chamgf5247@naver.com 1234
-kim kim123@naver.com 4321
-choi choi@gmail.com 5678
-park park@yahoo.com 8765
-who who124@naver.com 1242
+cha chamgf5247@naver.com 1234 08:00
+kim kim123@naver.com 4321 08:00
+choi choi@gmail.com 5678 08:00
+park park@yahoo.com 8765 08:00
+who who124@naver.com 1242 08:00
