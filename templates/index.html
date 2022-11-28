@@ -28,6 +28,13 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
+        {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script type="text/javascript">
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+        {%endwith%}
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#page-top">Thing-Un</a>
@@ -38,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Phrase">Phrase</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
                     </ul>
                 </div>
@@ -71,7 +78,7 @@
             </div>
         </section>
         <!-- Projects-->
-        <section class="projects-section bg-black" id="projects">
+        <section class="projects-section bg-black" id="Phrase">
             <div class="container px-4 px-lg-5 .bg-dark.bg-gradient">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center" style="background-color: white;">
@@ -123,7 +130,8 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+                        <h2 class="text-white mb-5">Thank you for visiting my website!</h2>
+                        <h2 class="text-white mb-5">This is my first project</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -131,13 +139,7 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" action="/check_mail/" method="post">
-                            <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" name="emailAddress" id="emailAddress" type="email" placeholder="Enter email address..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /></div>
-                                <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="submit">Send Mail</button></div>
-                            </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>

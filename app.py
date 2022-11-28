@@ -5,7 +5,7 @@
 
 
 
-from flask import Flask, render_template, request, session, url_for, redirect, flash
+from flask import Flask, render_template, request, redirect, flash
 from flask_mail import Mail, Message
 import datacon as dc
 
@@ -16,37 +16,58 @@ app.secret_key="My_Key"
 def index():
     return render_template('index.html')
 
+
+
+
 @app.route('/home/<uname>/',methods=['GET','POST'])
 def home(uname):
     if request.method=='GET':
-        return render_template('home.html', name=uname)
+        return render_template('home.html', name=uname, time=dc.get_data(uname,'uname','time'))
     elif request.method=='POST':
-        time=request.form.get('time')
-        return time
-    #time 설정 안된 계정은 다 08:00으로
-    #dc.add_time()으로 계정 정보 뒤에 time 추가 하기
+        try:
+            time=request.form.get('time')
+            dc.update_data('uname',uname,'time',time)
+            flash("Saved successfully.")
+            return redirect(f'/home/{uname}/')
+        except:
+            flash("An error has occurred.")
+            return redirect('/')
+
 
 @app.route('/delete/<uname>')
 def delete(uname):
-    return uname
+    try:
+        if dc.delete_data(uname)==True:
+            flash("Deleted successfully.")
+            return redirect('/')
+    except:
+        flash('An error has occurred.')
+        return redirect('/')
+
+
+
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
         return render_template('login.html')
     elif request.method=='POST':
-        lemail=request.form.get('email')
-        lpw=request.form.get('pw')
         try :
+            lemail=request.form.get('email')
+            lpw=request.form.get('pw')
             if lemail!='' and lpw!='':
-                if  dc.check_pw(lpw) and dc.check_mail(lemail):
-                    return redirect(f'/home/{dc.get_uname(lemail)}/')
+                if  dc.check_data(lpw,'pw') and dc.check_data(lemail,'email'):
+                    return redirect(f'/home/{dc.get_data(lemail,"email","uname")}/')
                 else:
                     return render_template('login.html', hidden='off' ,text='Email or password not registered')
             else:
                 return render_template('login.html', hidden='off', text="Do not allow spaces. Please enter a value.")     
         except:
             return render_template('login.html', hidden='off', text="Login failed Please try again!")    
+
+
+
+
 
 @app.route('/signup/' ,methods=['GET', 'POST'])
 def signup():
@@ -58,7 +79,7 @@ def signup():
         spw=request.form.get('sign-pw')
         try :
             if suname!='' and semail!='' and spw!='':
-                if dc.check_uname(suname)==False and dc.check_mail(semail)==False:
+                if dc.check_data(suname,'uname')==False and dc.check_data(semail,'email')==False:
                     dc.add_data(suname,semail,spw)
                     flash('Signup successful! Return to the login page :D')
                     return redirect('/login/')
@@ -70,27 +91,8 @@ def signup():
             return render_template('signup.html', hidden='off', text="Signup failed Please try again!")
 
 
-# app.config['MAIL_SERVER'] = 'smtp.naver.com'
-# app.config["MAIL_PORT"] = 465
-# app.config['MAIL_USERNAME'] = ''
-# app.config['MAIL_PASSWORD'] = ''
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = True
 
-# @app.route('/check_mail/', methods=['GET', 'POST'])
-# def mail():
-#     try:
-#         address=request.values.get('emailAddress')
-#         return redirect('/right_email/')
-#     except:
-#         return 
 
-#         address=request.values.get('emailAddress')
-#         address=request.values.get('emailAddress')
-#         msg = Message('Hello', sender='chamgf5247@naver.com', recipients=[address])
-#         msg.body = 'Hello Flask message sent fro Flask-Mail'
-#         Mail(app).send(msg)
-#         return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
