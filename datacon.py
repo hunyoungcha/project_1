@@ -28,13 +28,6 @@ def delete_data(uname):
     except:
         return False
 
-def text_get(num):
-    data=open('text_database.txt','r', encoding='utf-8')
-    dline=data.readlines()
-    return dline[num].split(' ',1)[1].split('\n')[0]
-
-print(text_get(10))
-
 def add_data(uname,email,pw):   #데이터 추가 (회원가입 기능, txt파일 맨 밑줄에 정보가 적힘)
     data=open('user_database.txt', 'a')
     data.write(f'\n{uname} {email} {pw} 08:00')
@@ -75,3 +68,15 @@ def data_remake(changed_db):   #특정 상황에서 db가 영구적으로 바껴
         if len(changed_db)-i!=1:
             data.write('\n')
 ##################################################################################################################################
+
+
+
+
+def text_get(num):
+    data=open('text_database.txt','r', encoding='utf-8')
+    dline=data.readlines()
+    return dline[num].split(' ',1)[1].split('\n')[0]
+
+
+print(text_get(0))
+

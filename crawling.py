@@ -7,6 +7,7 @@ obj=bs(html,"html.parser")
 
 data=open('text_database.txt','w', encoding="UTF-8")
 for i in obj.select('.se-fs-' ):
-    #크롤링 해서 db넣기 전에 한줄 띄어쓰기 제거하고 넣는 법 알아내기
-    data.write(i.get_text()+'\n')
-data.close() 
+    if i.get_text()!='\u200b':
+        if i.get_text().split(' ',1)[0].split('.')[0]!=type  #숫자로 시작 안할경우 앞에 문자 열 readlines로 불러와서 제일 마지막거만 변수에 저장한 후 +해서 변수에 저장하고 그걸 write하기 
+        data.write(i.get_text()+'\n')
+data.close()
