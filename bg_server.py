@@ -3,8 +3,7 @@
 import smtplib
 from email.mime.text import MIMEText
 import datacon as dc
-import time
-
+import time, random
 
 
 while True:
@@ -15,9 +14,9 @@ while True:
             smtp.ehlo()      # say Hello
             smtp.starttls()  # TLS 사용시 필요
             smtp.login('', '') #아이디 비번 넣기
-            msg = MIMEText('151232')
+            msg = MIMEText(dc.text_get(random.randrange(0,501)))
             msg['From'] ='chamgf5247@naver.com'
-            msg['Subject'] = 'test123'
+            msg['Subject'] = 'One Day One TingUn'
             msg['To'] =f"{db[i]['email']}"
             smtp.sendmail('chamgf5247@naver.com', f"{db[i]['email']}", msg.as_string())
             print('send mail to',db[i]['email'])

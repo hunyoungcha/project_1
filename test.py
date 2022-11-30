@@ -1,2 +1,20 @@
+import email.message
+import smtplib
 
-print('29. 좋은 희망을 품는 것은 바로 그것을 이룰 수 있는 지름길이다 / 루터'.split(' ',1)[0].split('.')[0]==int)
+
+
+
+msg = email.message.Message()
+msg['Subject'] = 'foo'
+msg['From'] = 'chamgf5247@naver.com'
+msg['To'] = 'hunyoung5247@gmail.com'
+msg.add_header('Content-Type','text/html')
+msg.set_payload(html)
+
+# Send the message via local SMTP server.
+s = smtplib.SMTP('smtp.naver.com',587)
+s.ehlo()
+s.starttls()
+s.login('chamgf5247','Navergnsdud6361@')
+s.sendmail(msg['From'], [msg['To']], msg.as_string())
+s.quit()

@@ -78,5 +78,3 @@ def text_get(num):
     return dline[num].split(' ',1)[1].split('\n')[0]
 
 
-print(text_get(0))
-
